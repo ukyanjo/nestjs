@@ -8,10 +8,13 @@ import { CatsRepository } from '../cats.repository';
 
 @Injectable()
 export class CatsService {
-  getAllCat() {
-    throw new Error('Method not implemented.');
-  }
   constructor(private readonly catsRepository: CatsRepository) {}
+
+  async getAllCat() {
+    const allCat = await this.catsRepository.findAll();
+    const readOnlyCats = allCat.map((cat) => cat.readOnlyData);
+    return readOnlyCats;
+  }
 
   async uploadImg(cat: Cat, files: Express.Multer.File[]) {
     const fileName = `cats/${files[0].filename}`;

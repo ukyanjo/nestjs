@@ -40,5 +40,11 @@ export class CommentsService {
     }
   }
 
-  async plusLike(id: string) {}
+  async plusLike(id: string) {
+    try {
+      const comment = await this.commentsModel.findById(id);
+      comment.likeCount += 1;
+      return await comment.save();
+    } catch (error) {}
+  }
 }

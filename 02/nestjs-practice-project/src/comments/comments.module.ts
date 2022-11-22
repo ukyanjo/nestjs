@@ -1,14 +1,16 @@
+import { CatsModule } from 'src/cats/cats.module';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CommentsSchema } from './comments.schema';
-import { CommentsController } from './controllers/comments.controller';
+import { Comments, CommentsSchema } from './comments.schema';
 import { CommentsService } from './services/comments.service';
+import { CommentsController } from './controllers/comments.controller';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: CommentsController.name, schema: CommentsSchema },
+      { name: Comments.name, schema: CommentsSchema },
     ]),
+    CatsModule,
   ],
   controllers: [CommentsController],
   providers: [CommentsService],
