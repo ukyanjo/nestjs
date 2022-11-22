@@ -5,6 +5,8 @@ import { CatsModule } from './cats/cats.module';
 import { LoggerMiddleware } from './commons/middlewares/logger.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+import { CommentsModule } from './comments/comments.module';
 import * as mongoose from 'mongoose';
 
 @Module({
@@ -12,6 +14,8 @@ import * as mongoose from 'mongoose';
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGODB),
     CatsModule,
+    AuthModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
